@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Our Forever Promise 🤞</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<title>Official Love Contract 📜</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;800&display=swap" rel="stylesheet">
 
 <style>
     /* --- RESET & BASICS --- */
@@ -13,8 +13,8 @@
     body {
         height: 100vh;
         height: 100dvh;
-        /* Magical Night Sky Gradient */
-        background: radial-gradient(circle at center, #2b32b2 0%, #1488cc 100%);
+        /* Deep Space Blue */
+        background: radial-gradient(circle at center, #1a237e 0%, #000000 100%);
         font-family: 'Nunito', sans-serif;
         display: flex;
         align-items: center;
@@ -52,44 +52,45 @@
         max-height: 95vh;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        box-shadow: 0 0 30px rgba(0,200,255,0.2);
         text-align: center;
         position: relative;
         z-index: 10;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255,255,255,0.2);
     }
 
     h1 {
         font-family: 'Dancing Script', cursive;
         color: #ffd700; /* Gold */
         margin-bottom: 5px;
-        font-size: 32px;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        font-size: 34px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .subtitle {
         font-size: 14px;
-        color: #e0e0e0;
+        color: #b3e5fc;
         margin-bottom: 20px;
         letter-spacing: 1px;
         text-transform: uppercase;
+        font-weight: 800;
     }
 
     /* --- PROMISE LIST --- */
     .promise-list {
         text-align: left;
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.3);
         padding: 15px;
         border-radius: 15px;
         margin-bottom: 20px;
         overflow-y: auto;
-        max-height: 40vh;
+        max-height: 45vh;
     }
 
     .promise-item {
         display: flex;
-        align-items: center;
-        margin-bottom: 12px;
+        align-items: start;
+        margin-bottom: 15px;
         opacity: 0; /* Hidden initially */
         transform: translateX(-20px);
         transition: all 0.5s ease;
@@ -101,7 +102,7 @@
     }
 
     .checkbox {
-        width: 20px; height: 20px;
+        width: 22px; height: 22px;
         border: 2px solid #ffd700;
         border-radius: 50%;
         margin-right: 12px;
@@ -109,16 +110,22 @@
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        margin-top: 2px;
+    }
+    
+    .checkbox.checked {
+        background: #ffd700;
+        box-shadow: 0 0 10px #ffd700;
     }
     
     .checkbox.checked::after {
         content: '✓';
-        color: #ffd700;
+        color: #000;
         font-weight: bold;
         font-size: 14px;
     }
 
-    .text { font-size: 15px; line-height: 1.4; }
+    .text { font-size: 16px; line-height: 1.4; font-weight: 600; }
 
     /* --- BUTTONS --- */
     .btn-group {
@@ -127,15 +134,15 @@
         gap: 15px;
         width: 100%;
         margin-top: auto;
-        min-height: 55px; /* Keeps layout stable */
+        min-height: 55px;
     }
 
     button {
-        padding: 12px 24px;
+        padding: 12px 20px;
         border: none;
         border-radius: 50px;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 800;
         cursor: pointer;
         transition: transform 0.2s;
         min-width: 120px;
@@ -146,23 +153,24 @@
 
     #startBtn {
         width: 100%;
-        background: linear-gradient(to right, #ffd700, #fdb931);
-        color: #2b32b2;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        background: linear-gradient(to right, #29b6f6, #0288d1);
+        color: #fff;
+        box-shadow: 0 0 20px rgba(41, 182, 246, 0.4);
     }
 
     #yesBtn {
-        background: #00c853; 
-        color: white;
-        box-shadow: 0 4px 10px rgba(0, 200, 83, 0.4);
+        background: #00e676; 
+        color: #004d40;
+        box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+        z-index: 50;
     }
 
     #noBtn {
-        background: #d50000; 
+        background: #ff1744; 
         color: white;
-        box-shadow: 0 4px 10px rgba(213, 0, 0, 0.4);
-        position: relative; /* Fixed: Starts normal, then moves */
-        transition: top 0.3s ease, left 0.3s ease; 
+        box-shadow: 0 4px 15px rgba(255, 23, 68, 0.4);
+        position: relative; 
+        transition: all 1s ease-in; /* Smooth exit */
     }
 
     .hidden { display: none !important; }
@@ -174,10 +182,10 @@
 <div id="star-container"></div>
 
 <div class="container">
-    <h1>Promise Day</h1>
-    <div class="subtitle">10 Days to The Wedding 💍</div>
+    <h1>The Vows 📜</h1>
+    <div class="subtitle">Terms & Conditions Apply*</div>
 
-    <button id="startBtn">Read The Vows ✨</button>
+    <button id="startBtn">Read Contract 🧐</button>
 
     <div id="content" class="hidden">
         
@@ -185,8 +193,8 @@
             </div>
 
         <div class="btn-group">
-            <button id="yesBtn">I PROMISE 🤞</button>
-            <button id="noBtn">Objection! ⚖️</button>
+            <button id="yesBtn">I AGREE! 💍</button>
+            <button id="noBtn">Decline ❌</button>
         </div>
     </div>
 </div>
@@ -200,31 +208,20 @@ const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const musicFrame = document.getElementById("music");
 
-// THE PROMISES
+// --- THE COMIC VOWS ---
 const promises = [
-    "To always keep the 'Sunflower & Chai' vibe alive, no matter how old we get. 🌻",
-    "To handle your mood swings (and my own anxiety) with patience. 💆‍♂️",
-    "To be your best friend first, and husband second. 🤝",
-    "To make Chittorgarh feel like the most beautiful home in the world. 🏡",
-    "To never stop trying to impress you, even after 50 years. ❤️",
-    "To love you more than my investments! (Okay, maybe equally 😜) 📈"
+    "To always keep the 'Sunflower & Chai' vibe alive. 🌻",
+    "To admit you are right... even when the Google Search results say otherwise. 🤐",
+    "To wait patiently for you to get ready... even if '5 minutes' actually means 45. 💄",
+    "To never leave a wet towel on the bed (or at least try really, really hard). 🚿",
+    "To act surprised when you tell me the same gossip for the 3rd time. 😱",
+    "To love you more than my Stock Portfolio! (That's a BIG deal 😜) 📈"
 ];
-
-// TAUNTS for "No"
-const taunts = [
-    "Breach of Contract! ⚖️",
-    "Lawyer nahi bacha payega! 😂",
-    "You are stuck with me now! ❤️",
-    "Signature required here! ✒️",
-    "10 days left, no backing out! 💍",
-    "Too late to say No! 😜"
-];
-let tauntIndex = 0;
 
 // --- STARS BACKGROUND ---
 function createStars() {
     const container = document.getElementById('star-container');
-    for(let i=0; i<50; i++) {
+    for(let i=0; i<60; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
         star.style.left = Math.random() * 100 + 'vw';
@@ -241,10 +238,10 @@ createStars();
 startBtn.onclick = () => {
     startBtn.style.display = "none";
     content.classList.remove("hidden");
-    // Soft acoustic romantic music
-    musicFrame.src = "https://www.youtube.com/embed/Q-41C89y4Hs?autoplay=1&loop=1"; 
+    // Playful romantic music
+    musicFrame.src = "https://www.youtube.com/embed/S2h7r7dE6_U?autoplay=1&loop=1"; 
     
-    // Trigger the promise reveal animation
+    // Trigger the promise reveal
     revealPromises();
 };
 
@@ -255,7 +252,6 @@ function revealPromises() {
             const item = document.createElement('div');
             item.classList.add('promise-item');
             
-            // Inner HTML structure
             item.innerHTML = `
                 <div class="checkbox" id="check-${index}"></div>
                 <div class="text">${text}</div>
@@ -263,47 +259,52 @@ function revealPromises() {
             
             listContainer.appendChild(item);
             
-            // Trigger Fade In
+            // Fade In & Auto-Scroll
             setTimeout(() => {
                 item.classList.add('show');
-                // Tick the checkbox after a slight delay
+                listContainer.scrollTop = listContainer.scrollHeight; // Auto scroll to bottom
+                
+                // Tick the checkbox
                 setTimeout(() => {
                     document.getElementById(`check-${index}`).classList.add('checked');
                 }, 400);
             }, 50);
 
-        }, index * 1200); // 1.2 seconds between each promise
+        }, index * 1500); // 1.5 seconds per vow
     });
 }
 
-// --- NO BUTTON LOGIC (Fixed Version) ---
+// --- NO BUTTON LOGIC (THE FLY AWAY) ---
 noBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    alert(taunts[tauntIndex % taunts.length]);
-    tauntIndex++;
     
-    // Move Button
-    const maxX = window.innerWidth - noBtn.offsetWidth - 20; 
-    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
-    const randomX = Math.max(10, Math.random() * maxX);
-    const randomY = Math.max(10, Math.random() * maxY);
-
-    noBtn.style.position = "fixed"; 
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
+    // 1. One final warning
+    alert("Option 'Decline' is currently unavailable due to heavy love traffic! 🚀");
+    
+    // 2. Button Launches into Space
+    noBtn.style.position = "fixed"; // Break out of layout
+    noBtn.style.transition = "all 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)"; // Rocket ease
+    
+    // Move it waaaay off screen (Up and Right) and rotate it
+    setTimeout(() => {
+        noBtn.style.top = "-500px";
+        noBtn.style.left = "150%";
+        noBtn.style.transform = "rotate(720deg) scale(0.1)";
+        noBtn.style.opacity = "0";
+    }, 100);
 });
 
 // --- YES BUTTON SUCCESS ---
 yesBtn.onclick = () => {
     document.querySelector('.container').innerHTML = `
         <div>
-            <h1 style="font-size: 36px;">It's Official! 🤞</h1>
+            <h1 style="font-size: 32px; color: #00e676;">CONTRACT SEALED! ✍️</h1>
             <p style="font-size: 18px; margin: 20px 0; line-height: 1.5;">
-                Contract Sealed with a Kiss (soon)!<br>
-                Can't wait to marry you, Sejal.<br>
-                <b>See you at the Mandap!</b>
+                You have officially subscribed to a lifetime of my bad jokes and good love.<br>
+                <b>No Refunds! No Returns!</b><br>
+                See you on Feb 21st! ❤️
             </p>
-            <div style="font-size: 50px;">💍❤️🏠</div>
+            <div style="font-size: 60px;">👩‍❤️‍👨💍🏡</div>
         </div>
     `;
 };
@@ -311,3 +312,4 @@ yesBtn.onclick = () => {
 
 </body>
 </html>
+
