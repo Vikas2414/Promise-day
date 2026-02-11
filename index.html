@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Our Forever Promise 🤞</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    /* --- RESET & BASICS --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        height: 100vh;
+        height: 100dvh;
+        /* Magical Night Sky Gradient */
+        background: radial-gradient(circle at center, #2b32b2 0%, #1488cc 100%);
+        font-family: 'Nunito', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        color: #fff;
+    }
+
+    /* --- FLOATING STARS --- */
+    #star-container {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none; z-index: 0;
+    }
+    .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: twinkle infinite alternate;
+    }
+    @keyframes twinkle {
+        0% { transform: scale(1); opacity: 0.3; }
+        100% { transform: scale(1.5); opacity: 1; }
+    }
+
+    /* --- MAIN CARD --- */
+    .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 25px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 400px;
+        max-height: 95vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        color: #ffd700; /* Gold */
+        margin-bottom: 5px;
+        font-size: 32px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: #e0e0e0;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* --- PROMISE LIST --- */
+    .promise-list {
+        text-align: left;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow-y: auto;
+        max-height: 40vh;
+    }
+
+    .promise-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        opacity: 0; /* Hidden initially */
+        transform: translateX(-20px);
+        transition: all 0.5s ease;
+    }
+    
+    .promise-item.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .checkbox {
+        width: 20px; height: 20px;
+        border: 2px solid #ffd700;
+        border-radius: 50%;
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .checkbox.checked::after {
+        content: '✓';
+        color: #ffd700;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .text { font-size: 15px; line-height: 1.4; }
+
+    /* --- BUTTONS --- */
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        margin-top: auto;
+        min-height: 55px; /* Keeps layout stable */
+    }
+
+    button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s;
+        min-width: 120px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    button:active { transform: scale(0.95); }
+
+    #startBtn {
+        width: 100%;
+        background: linear-gradient(to right, #ffd700, #fdb931);
+        color: #2b32b2;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    #yesBtn {
+        background: #00c853; 
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 200, 83, 0.4);
+    }
+
+    #noBtn {
+        background: #d50000; 
+        color: white;
+        box-shadow: 0 4px 10px rgba(213, 0, 0, 0.4);
+        position: relative; /* Fixed: Starts normal, then moves */
+        transition: top 0.3s ease, left 0.3s ease; 
+    }
+
+    .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<iframe id="music" allow="autoplay" style="display:none"></iframe>
+<div id="star-container"></div>
+
+<div class="container">
+    <h1>Promise Day</h1>
+    <div class="subtitle">10 Days to The Wedding 💍</div>
+
+    <button id="startBtn">Read The Vows ✨</button>
+
+    <div id="content" class="hidden">
+        
+        <div class="promise-list" id="list">
+            </div>
+
+        <div class="btn-group">
+            <button id="yesBtn">I PROMISE 🤞</button>
+            <button id="noBtn">Objection! ⚖️</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- CONFIGURATION ---
+const startBtn = document.getElementById("startBtn");
+const content = document.getElementById("content");
+const listContainer = document.getElementById("list");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const musicFrame = document.getElementById("music");
+
+// THE PROMISES
+const promises = [
+    "To always keep the 'Sunflower & Chai' vibe alive, no matter how old we get. 🌻",
+    "To handle your mood swings (and my own anxiety) with patience. 💆‍♂️",
+    "To be your best friend first, and husband second. 🤝",
+    "To make Chittorgarh feel like the most beautiful home in the world. 🏡",
+    "To never stop trying to impress you, even after 50 years. ❤️",
+    "To love you more than my investments! (Okay, maybe equally 😜) 📈"
+];
+
+// TAUNTS for "No"
+const taunts = [
+    "Breach of Contract! ⚖️",
+    "Lawyer nahi bacha payega! 😂",
+    "You are stuck with me now! ❤️",
+    "Signature required here! ✒️",
+    "10 days left, no backing out! 💍",
+    "Too late to say No! 😜"
+];
+let tauntIndex = 0;
+
+// --- STARS BACKGROUND ---
+function createStars() {
+    const container = document.getElementById('star-container');
+    for(let i=0; i<50; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.width = Math.random() * 3 + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+        container.appendChild(star);
+    }
+}
+createStars();
+
+// --- START BUTTON ---
+startBtn.onclick = () => {
+    startBtn.style.display = "none";
+    content.classList.remove("hidden");
+    // Soft acoustic romantic music
+    musicFrame.src = "https://www.youtube.com/embed/Q-41C89y4Hs?autoplay=1&loop=1"; 
+    
+    // Trigger the promise reveal animation
+    revealPromises();
+};
+
+// --- REVEAL ANIMATION ---
+function revealPromises() {
+    promises.forEach((text, index) => {
+        setTimeout(() => {
+            const item = document.createElement('div');
+            item.classList.add('promise-item');
+            
+            // Inner HTML structure
+            item.innerHTML = `
+                <div class="checkbox" id="check-${index}"></div>
+                <div class="text">${text}</div>
+            `;
+            
+            listContainer.appendChild(item);
+            
+            // Trigger Fade In
+            setTimeout(() => {
+                item.classList.add('show');
+                // Tick the checkbox after a slight delay
+                setTimeout(() => {
+                    document.getElementById(`check-${index}`).classList.add('checked');
+                }, 400);
+            }, 50);
+
+        }, index * 1200); // 1.2 seconds between each promise
+    });
+}
+
+// --- NO BUTTON LOGIC (Fixed Version) ---
+noBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert(taunts[tauntIndex % taunts.length]);
+    tauntIndex++;
+    
+    // Move Button
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20; 
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    const randomX = Math.max(10, Math.random() * maxX);
+    const randomY = Math.max(10, Math.random() * maxY);
+
+    noBtn.style.position = "fixed"; 
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+});
+
+// --- YES BUTTON SUCCESS ---
+yesBtn.onclick = () => {
+    document.querySelector('.container').innerHTML = `
+        <div>
+            <h1 style="font-size: 36px;">It's Official! 🤞</h1>
+            <p style="font-size: 18px; margin: 20px 0; line-height: 1.5;">
+                Contract Sealed with a Kiss (soon)!<br>
+                Can't wait to marry you, Sejal.<br>
+                <b>See you at the Mandap!</b>
+            </p>
+            <div style="font-size: 50px;">💍❤️🏠</div>
+        </div>
+    `;
+};
+</script>
+
+</body>
+</html>
