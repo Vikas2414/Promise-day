@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Viku's Promises to Seju 📜</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;800&display=swap" rel="stylesheet">
+<title>A Question for Seju 💍</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
     /* --- RESET & BASICS --- */
@@ -13,119 +13,90 @@
     body {
         height: 100vh;
         height: 100dvh;
-        /* Deep Space Blue */
-        background: radial-gradient(circle at center, #1a237e 0%, #000000 100%);
-        font-family: 'Nunito', sans-serif;
+        /* Romantic Sunset/Rose Gold Gradient */
+        background: linear-gradient(135deg, #ffc3a0 0%, #ffafbd 100%);
+        font-family: 'Montserrat', sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        color: #fff;
     }
 
-    /* --- FLOATING STARS --- */
-    #star-container {
+    /* --- FLOATING RINGS BG --- */
+    #bg-container {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         pointer-events: none; z-index: 0;
     }
-    .star {
-        position: absolute;
-        background: white;
-        border-radius: 50%;
-        opacity: 0.8;
-        animation: twinkle infinite alternate;
+    .ring-bg {
+        position: absolute; opacity: 0.5;
+        animation: floatUp 8s linear infinite;
+        font-size: 20px;
     }
-    @keyframes twinkle {
-        0% { transform: scale(1); opacity: 0.3; }
-        100% { transform: scale(1.5); opacity: 1; }
+    @keyframes floatUp {
+        0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+        50% { opacity: 0.6; }
+        100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
     }
 
     /* --- MAIN CARD --- */
     .container {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        padding: 25px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        padding: 30px;
         border-radius: 20px;
         width: 90%;
-        max-width: 400px;
+        max-width: 380px;
         max-height: 95vh;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 0 30px rgba(0,200,255,0.2);
+        box-shadow: 0 20px 40px rgba(100, 50, 50, 0.2);
         text-align: center;
         position: relative;
         z-index: 10;
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 2px solid #fff;
     }
 
     h1 {
-        font-family: 'Dancing Script', cursive;
-        color: #ffd700; /* Gold */
+        font-family: 'Cinzel', serif;
+        color: #d81b60; 
         margin-bottom: 5px;
-        font-size: 34px;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        font-size: 26px;
+        font-weight: 600;
     }
 
-    .subtitle {
-        font-size: 14px;
-        color: #b3e5fc;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-weight: 800;
-    }
-
-    /* --- PROMISE LIST --- */
-    .promise-list {
-        text-align: left;
-        background: rgba(0, 0, 0, 0.3);
+    /* --- SCROLLABLE LETTER --- */
+    .message-box {
+        background: #fff0f5;
+        border: 1px solid #ffccd5;
+        border-radius: 10px;
         padding: 15px;
-        border-radius: 15px;
-        margin-bottom: 20px;
+        margin: 15px 0;
+        text-align: left;
+        font-size: 15px;
+        color: #555;
+        line-height: 1.6;
+        white-space: pre-line;
         overflow-y: auto;
-        max-height: 45vh;
+        max-height: 30vh;
+        scroll-behavior: smooth;
     }
 
-    .promise-item {
-        display: flex;
-        align-items: start;
+    /* --- IMAGE AREA --- */
+    .img-container {
+        width: 100%;
+        height: 180px;
+        border-radius: 15px;
+        overflow: hidden;
         margin-bottom: 15px;
-        opacity: 0; /* Hidden initially */
-        transform: translateX(-20px);
-        transition: all 0.5s ease;
-    }
-    
-    .promise-item.show {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .checkbox {
-        width: 22px; height: 22px;
-        border: 2px solid #ffd700;
-        border-radius: 50%;
-        margin-right: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
+        background: #000;
     }
-    
-    .checkbox.checked {
-        background: #ffd700;
-        box-shadow: 0 0 10px #ffd700;
+    .img-container img {
+        width: 100%; height: 100%; object-fit: cover;
     }
-    
-    .checkbox.checked::after {
-        content: '✓';
-        color: #000;
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .text { font-size: 16px; line-height: 1.4; font-weight: 600; }
 
     /* --- BUTTONS --- */
     .btn-group {
@@ -133,19 +104,20 @@
         justify-content: center;
         gap: 15px;
         width: 100%;
-        margin-top: auto;
+        position: relative;
         min-height: 55px;
     }
 
     button {
-        padding: 12px 20px;
+        padding: 12px 24px;
         border: none;
         border-radius: 50px;
-        font-size: 16px;
-        font-weight: 800;
+        font-size: 15px;
+        font-weight: 700;
         cursor: pointer;
         transition: transform 0.2s;
-        min-width: 120px;
+        min-width: 110px;
+        text-transform: uppercase;
         -webkit-tap-highlight-color: transparent;
     }
     
@@ -153,24 +125,24 @@
 
     #startBtn {
         width: 100%;
-        background: linear-gradient(to right, #29b6f6, #0288d1);
-        color: #fff;
-        box-shadow: 0 0 20px rgba(41, 182, 246, 0.4);
+        background: linear-gradient(to right, #d81b60, #ff4d6d);
+        color: white;
+        box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
     }
 
     #yesBtn {
-        background: #00e676; 
-        color: #004d40;
-        box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
-        z-index: 50;
+        background: #009688; 
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 150, 136, 0.4);
+        z-index: 20;
     }
 
     #noBtn {
-        background: #ff1744; 
-        color: white;
-        box-shadow: 0 4px 15px rgba(255, 23, 68, 0.4);
+        background: #b0bec5; 
+        color: #37474f;
+        box-shadow: 0 4px 10px rgba(176, 190, 197, 0.4);
+        z-index: 100;
         position: relative; 
-        transition: all 1s ease-in; /* Smooth exit */
     }
 
     .hidden { display: none !important; }
@@ -179,22 +151,24 @@
 <body>
 
 <iframe id="music" allow="autoplay" style="display:none"></iframe>
-<div id="star-container"></div>
+<div id="bg-container"></div>
 
 <div class="container">
-    <h1>Viku's Vows 📜</h1>
-    <div class="subtitle">For My Bride, Seju ❤️</div>
+    <h1 id="mainTitle">One Last Question...</h1>
 
-    <button id="startBtn">Open The Contract 🧐</button>
+    <button id="startBtn">Open Box 💍</button>
 
     <div id="content" class="hidden">
         
-        <div class="promise-list" id="list">
-            </div>
+        <div class="img-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODFjN2I3YjI5YjI5YjI5YjI5YjI5YjI5YjI5YjI5YjI5YjI5YiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/3o7TKoWXm3okO1kgHC/giphy.gif" alt="Ring">
+        </div>
+
+        <div class="message-box" id="typingText"></div>
 
         <div class="btn-group">
-            <button id="yesBtn">AGREED! 💍</button>
-            <button id="noBtn">Decline ❌</button>
+            <button id="yesBtn">YES, I DO! 💍</button>
+            <button id="noBtn">No way 🏃‍♀️</button>
         </div>
     </div>
 </div>
@@ -203,113 +177,108 @@
 // --- CONFIGURATION ---
 const startBtn = document.getElementById("startBtn");
 const content = document.getElementById("content");
-const listContainer = document.getElementById("list");
+const typingText = document.getElementById("typingText");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const musicFrame = document.getElementById("music");
 
-// --- THE VIKU -> SEJU VOWS ---
-const promises = [
-    "To bring you Gold, Silver, and... Pizza when you are moody. 💍🍕",
-    "To accept that 'Seju is always Right' (Even when I know I am). 🤫",
-    "To wait for you to get ready... even if '5 minutes' means 1 hour. 💄",
-    "To keep our 'Sunflower & Chai' dates alive forever. 🌻",
-    "To love you more than my Stock Portfolio! (And that's a huge deal). 📈",
-    "To be your best friend, your jeweler, and your Viku... forever. ❤️"
-];
+// --- VIKU'S VOWS ---
+const message = 
+`Dearest Seju,
 
-// --- STARS BACKGROUND ---
-function createStars() {
-    const container = document.getElementById('star-container');
-    for(let i=0; i<60; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.top = Math.random() * 100 + 'vh';
-        star.style.width = Math.random() * 3 + 'px';
-        star.style.height = star.style.width;
-        star.style.animationDuration = (Math.random() * 2 + 1) + 's';
-        container.appendChild(star);
+The cards are printed. 💌
+The venue in Chittorgarh is booked. 🏰
+The deposits are non-refundable! 💸
+
+But I still want to ask you, strictly for the record...
+Are you ready to be Mrs. Sejal forever?
+
+I promise to keep our life as warm as Chai and as bright as Sunflowers. 🌻
+
+So, officially...
+Will you marry me? (Again? 😜)`;
+
+// --- TAUNTS (Propose Day Specific) ---
+const taunts = [
+    "Cards chap gaye hain! 😂",
+    "Deposits wapas nahi milenge! 💸",
+    "Too late to run! 🏃‍♀️",
+    "Viku is yours forever now! ❤️",
+    "Chittorgarh is waiting! 🏰",
+    "Just say Yes, Seju! 😘"
+];
+let tauntIndex = 0;
+
+// --- FLOATING BACKGROUND ---
+function createBg() {
+    const container = document.getElementById('bg-container');
+    const el = document.createElement('div');
+    el.classList.add('ring-bg');
+    el.innerText = Math.random() > 0.5 ? '💍' : '❤️';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    container.appendChild(el);
+    setTimeout(() => { el.remove(); }, 8000);
+}
+setInterval(createBg, 500);
+
+// --- TYPING EFFECT ---
+let charIndex = 0;
+function typeEffect() {
+    if (charIndex < message.length) {
+        typingText.textContent += message.charAt(charIndex);
+        charIndex++;
+        typingText.scrollTop = typingText.scrollHeight; 
+        setTimeout(typeEffect, 35); 
     }
 }
-createStars();
 
 // --- START BUTTON ---
 startBtn.onclick = () => {
     startBtn.style.display = "none";
     content.classList.remove("hidden");
-    // Playful romantic music
-    musicFrame.src = "https://www.youtube.com/embed/S2h7r7dE6_U?autoplay=1&loop=1"; 
-    
-    // Trigger the promise reveal
-    revealPromises();
+    document.getElementById("mainTitle").innerText = "Will You? 💍";
+    // Romantic song "Perfect" or similar instrumental
+    musicFrame.src = "https://www.youtube.com/embed/Pkh8UtuejGw?autoplay=1&loop=1"; 
+    typeEffect();
 };
 
-// --- REVEAL ANIMATION ---
-function revealPromises() {
-    promises.forEach((text, index) => {
-        setTimeout(() => {
-            const item = document.createElement('div');
-            item.classList.add('promise-item');
-            
-            item.innerHTML = `
-                <div class="checkbox" id="check-${index}"></div>
-                <div class="text">${text}</div>
-            `;
-            
-            listContainer.appendChild(item);
-            
-            // Fade In & Auto-Scroll
-            setTimeout(() => {
-                item.classList.add('show');
-                listContainer.scrollTop = listContainer.scrollHeight; // Auto scroll to bottom
-                
-                // Tick the checkbox
-                setTimeout(() => {
-                    document.getElementById(`check-${index}`).classList.add('checked');
-                }, 400);
-            }, 50);
-
-        }, index * 1500); // 1.5 seconds per vow
-    });
-}
-
-// --- NO BUTTON LOGIC (THE FLY AWAY) ---
+// --- NO BUTTON LOGIC (Run Away) ---
 noBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    alert(taunts[tauntIndex % taunts.length]);
+    tauntIndex++;
     
-    // 1. One final warning
-    alert("Option 'Decline' is unavailable due to heavy love traffic! 🚀");
-    
-    // 2. Button Launches into Space
+    // Move Button
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20; 
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    const randomX = Math.max(10, Math.random() * maxX);
+    const randomY = Math.max(10, Math.random() * maxY);
+
     noBtn.style.position = "fixed"; 
-    noBtn.style.transition = "all 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)"; 
-    
-    // Move it waaaay off screen (Up and Right) and rotate it
-    setTimeout(() => {
-        noBtn.style.top = "-500px";
-        noBtn.style.left = "150%";
-        noBtn.style.transform = "rotate(720deg) scale(0.1)";
-        noBtn.style.opacity = "0";
-    }, 100);
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
 });
 
 // --- YES BUTTON SUCCESS ---
 yesBtn.onclick = () => {
     document.querySelector('.container').innerHTML = `
         <div>
-            <h1 style="font-size: 32px; color: #00e676;">CONTRACT SEALED! ✍️</h1>
-            <p style="font-size: 18px; margin: 20px 0; line-height: 1.5;">
-                You have officially subscribed to a lifetime of me!<br>
-                <b>No Refunds! No Returns!</b><br>
-                See you on Feb 21st, Sejal! ❤️
+            <h1 style="color: #009688; font-size: 28px;">SHE SAID YES! (Again) 💍</h1>
+            <p style="font-size: 16px; color: #333; margin: 15px 0;">
+                See you at the Mandap, Seju! ❤️<br>
+                <b>Feb 21st, 2026</b><br>
+                Let's make it official!
             </p>
-            <div style="font-size: 60px;">👩‍❤️‍👨💍🏡</div>
+            <div style="border-radius:15px; overflow:hidden;">
+                <img style="width: 100%; display:block;" 
+                     src="https://media.giphy.com/media/3o7TKoWXm3okO1kgHC/giphy.gif">
+            </div>
         </div>
     `;
+    setInterval(createBg, 100);
 };
 </script>
 
 </body>
 </html>
-
